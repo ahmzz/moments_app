@@ -13,6 +13,7 @@ export default defineConfig({
   plugins: [deskTool(), visionTool()],
 
   schema: {
+    name:"moments_jsm",
     types: schemaTypes,
   },
 })
