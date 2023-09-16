@@ -5,26 +5,29 @@ import { useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import bgVideo from "../assets/moments.mp4";
 import logo from "../assets/logov1.1.png";
-// import {gapi} from 'gapi-script'
+import { client } from "../client";
+import {gapi} from 'gapi-script'
 
 const Login = () => {
 
-  // useEffect(()=>{
+  const navigate=useNavigate()
 
-  //   function start(){
-  //     gapi.client.init({
-  //       clientId:process.env.REACT_APP_API_TOKEN,
-  //       scope:""
-  //     })
-  //   }
+  useEffect(()=>{
 
-  //   gapi.load('client:auth2',start)
+    function start(){
+      gapi.client.init({
+        clientId:process.env.REACT_APP_API_TOKEN,
+        scope:""
+      })
+    }
 
-  // })
+    gapi.load('client:auth2',start)
+
+  })
 
 
     const googleResponse=(res)=>{
-      
+      console.log(res)
       localStorage.setItem('user',JSON.stringify(res.profileObj))
       const {name,googleId,imageUrl}=res.profileObj
 
@@ -34,6 +37,9 @@ const Login = () => {
         userName:name,
         image:imageUrl
       }
+
+      client.createIfNotExists(doc)
+      .then(()=>navigate('/',{replace:true}))
 
     }
     const onFailure=(res)=>{
