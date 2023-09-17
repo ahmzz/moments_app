@@ -50,6 +50,7 @@ module.exports = {
       backgroundColor: {
         mainColor: '#001523',
         secondaryColor: '#F0F0F0',
+        lightSkyBlueBg:'#F0F8FF',
         blackOverlay: 'rgba(0, 0 ,0 ,0.3)',
       },
       keyframes: {
